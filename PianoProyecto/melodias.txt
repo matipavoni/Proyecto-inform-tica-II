@@ -1,0 +1,7 @@
+Tecla serial: 1
+Tecla serial: 2
+Tecla serial: 3
+Tecla serial: 4
+Tecla serial: 5
+Tecla serial: 6
+Tecla serial: 7
