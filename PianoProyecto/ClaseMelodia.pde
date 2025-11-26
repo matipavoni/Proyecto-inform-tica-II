@@ -18,6 +18,7 @@ class Melodia {
   }
 
   void cargar(String archivo) {
+ notas.clear();
     String[] lineas = loadStrings(archivo);
     if (lineas != null)
       for (String l : lineas) notas.add(l);
