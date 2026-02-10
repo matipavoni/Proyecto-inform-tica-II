@@ -184,37 +184,3 @@ miLib.leerTeclas(ahora, teclas, notasBase, octava,estadoActual, tonoActivo, tono
 	bloqueoGrabar = false;
 }
 }
-
-// ---------------------------
-// Funciones auxiliares
-// ---------------------------
-void leerCambioOctava(unsigned long ahora) {
-	if (digitalRead(subirOctava) == LOW && (ahora - ultimaAccion > debounceTiempo)) {
-		octava++;
-		if (octava > 2) octava = 2;
-		ultimaAccion = ahora;
-		estadoActual = CAMBIO_OCTAVA;
-	}
-	
-	if (digitalRead(bajarOctava) == LOW && (ahora - ultimaAccion > debounceTiempo)) {
-		octava--;
-		if (octava < -1) octava = -1;
-		ultimaAccion = ahora;
-		estadoActual = CAMBIO_OCTAVA;
-	}
-}
-
-void leerTeclas(unsigned long ahora) {
-	for (int i = 0; i < 7; i++) {
-		if (digitalRead(teclas[i]) == LOW && !tonoActivo) {
-			float freq = notasBase[i] * pow(2, octava);
-			tone(buzzer, freq);
-			tonoActivo = true;
-			tonoInicio = ahora;
-			Serial.print("Nota ");
-			Serial.println(i);
-			estadoActual = REPRODUCIENDO;
-			break;
-		}
-	}
-}
